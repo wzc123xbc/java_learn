@@ -1,4 +1,3 @@
-
 public class object_Oriented {
     public static void main(String[] args) {
 
@@ -25,6 +24,32 @@ public class object_Oriented {
         // 2.调用类中的方法或构造方法（在方法中调用其他方法 this可以省略）
         // 3.表示当前对象（在方法调用过程中，谁调用的方法谁就是当前对象，this.name）
         /*--------------------------------------------------------------*/
+        /*对象的一对一关系学习*/
+        /*--------------------------------------------------------------*/
+            Hero hero = new Hero("刘备",300);
+            Weapon weapon = new Weapon("双股剑",3);
+
+            // 把两个对象关联起来
+            hero.setWeapon(weapon);
+            weapon.setHero(hero);
+
+            // 通过英雄来获取他的信息
+            String hero_name = hero.getName();
+            int hero_age = hero.getAge();
+            Weapon hero_weapon = hero.getWeapon();
+            System.out.print("在下"+hero_name+", 今年"+hero_age+"岁，我的武器是：");
+            System.out.println(hero_weapon.getName()+"，排名："+hero_weapon.getGrade());
+        /*--------------------------------------------------------------*/
+        /* static关键字学习*/
+        /*--------------------------------------------------------------*/
+        // 1.声明为static的变量实质上就是全局变量----> 存放在静态方法区
+        //   只申请一块内存区域 供大伙一起用！
+        // 2.通常，在类中定义一个方法为static,那就是说，无需本类的对象即可调用此方法
+        // 3.普通类无法使用static 内部类才可以使用static
+        // 4.建议不要对象的方式调用 而是直接用方法（类名）的方式进行调用
+        // 5.静态方法不能访问非静态的数据
+
+
     }
 }
 
@@ -104,4 +129,69 @@ class Dog{
         System.out.println("带两个参数的构造方法执行了！");
     }
 }
+
+/**
+ * 对象的一对一关系学习
+ * 英雄类 对应 兵器类
+ * 双向一对一 和 单相一对一
+ */
+// 英雄类
+ class Hero{
+     private String name;
+     private int age;
+     // 添加兵器对应属性：
+    private Weapon weapon;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    public Weapon getWeapon() {
+        return weapon;
+    }
+    public Hero(){}
+    public Hero(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public int getAge() {
+        return age;
+    }
+}
+// 兵器类
+class Weapon{
+     private String name;
+     private int grade;
+
+     // 设置英雄类属性
+    private Hero hero;
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+    public Weapon(){}
+    public Weapon(String name,int grade){
+         this.name = name;
+         this.grade = grade;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName(){
+         return name;
+    }
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+    public int getGrade() {
+        return grade;
+    }
+}
+
 
