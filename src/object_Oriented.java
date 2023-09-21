@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.function.IntFunction;
+
 public class object_Oriented {
     /** 面向对象学习大纲
      * 一、面向对象上
@@ -27,6 +29,7 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         /* 面向对象(上)学习代码*/
         /*--------------------------------------------------------------*/
+        System.out.println("/* 面向对象(上)学习代码*/");
         // 对象的定义： 类名称 对象名称 = new 类名称（）
         Horse h = new Horse();     // 声明一个类的变量
         h.name = "次兔马";
@@ -38,6 +41,7 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         /* 构造方法学习代码*/
         /*--------------------------------------------------------------*/
+        System.out.println("/* 构造方法学习代码*/");
         Dog dog1 = new Dog();                       // 调用构造方法1
         Dog dog2 = new Dog("wangwang",5); // 调用构造方法2
         /*--------------------------------------------------------------*/
@@ -49,6 +53,7 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         /*对象的一对一关系学习*/
         /*--------------------------------------------------------------*/
+        System.out.println("/*对象的一对一关系学习*/");
             Hero hero = new Hero("刘备",300);
             Weapon weapon = new Weapon("双股剑",3);
 
@@ -95,12 +100,13 @@ public class object_Oriented {
             // 目的是为了节省重复创建对象所带来的内存消耗，从而提高效率
         // 使用构造方法私有化 + 静态方法 来实现工具类（例如JDK 内 Math）
         // 单例的内存消耗比上述方式小 在项目开发比较好
-
+        System.out.println("/* 单例设计模式学习 */");
         singleton1 s = singleton1.getInstance();
         s.print();
         /*--------------------------------------------------------------*/
         /* 对象数组与管理学习 */
         /*--------------------------------------------------------------*/
+        System.out.println("/* 对象数组与管理学习 */");
         ChickenManager cm = new ChickenManager(5);
         cm.add(new Chicken(1,"聪仔",3));
         cm.add(new Chicken(2,"濠仔",4));
@@ -120,13 +126,15 @@ public class object_Oriented {
         cm.printALL();
         /*--------------------------------------------------------------*/
 
+        /*--------------------------------------------------------------*/
 
         /*--------------------------------------------------------------*/
         /* 面向对象（下）学习代码*/
         /*--------------------------------------------------------------*/
         /* 继承学习代码 */
         /*--------------------------------------------------------------*/
-        HomeCat homeCat = new HomeCat();
+        System.out.println("/* 继承学习代码 */");
+        HomeCat homeCat = new HomeCat("大橘");
         homeCat.print();
         /*--------------------------------------------------------------*/
         /* 继承的限制学习 */
@@ -134,7 +142,54 @@ public class object_Oriented {
         // 1.JAVA只允许单继承 但允许多重继承（不能当兄弟，但是可以当爷爷）
         // 2.继承只允许继承非私有的
         // 3.构造方法不允许被继承
+        // 4.protected（受保护的访问权限符，用于修饰属性和方法，使用其修饰的属性和方法可以被继承）
+        // 5.当父类中没有无参构造方法时，子类必须显示的调用父类的带参构造方法，使用关键字： super
+        // 开发原则：高内聚 低耦合
         /*--------------------------------------------------------------*/
+        /*方法的重写学习*/
+        /*--------------------------------------------------------------*/
+        // 所谓的重写方法 实际上就是对于某些具体的子类 其继承的方法做出修改
+        // 随后在调用子类对象是，调用所继承的已修改的代码
+        // 关于方法重写的一些特性
+        //  1.发生在子父类之中，方法重写的两个方法返回值、方法名、参数列表必须完全一致
+        //  2.子类抛出的异常不能超过父类相应方法抛出的异常（子类异常不大于父类）
+        //  3.子类方法的访问级别不低于父类相应方法的访问级别
+        //  4.父类方法中使用private、static、final任意修饰符修饰，则不能被子类重写
+        // 为什么要有重写方法？
+            // 若子类中继承过来的方法，不能满足子类特有的需求时，子类就需要重写父类中相关的方法，方法的重写也是程序扩展性的体现
+        // 拓展 经典面试题
+            // overloading 与 overriding 的区别
+            // overloading：方法的重载，发生在同一个类中，方法名相同，参数列表不同，返回值无关
+            // overriding：方法的重写，发生在子父类中，方法名相同，参数列表相同，返回值相同
+        homeCat.eat();   // 重写了父类的方法！！！
+        /*--------------------------------------------------------------*/
+        /* super关键字学习 */
+        /*--------------------------------------------------------------*/
+        // super可以完成以下操作
+        // 1.使用super关键字调用父类中的属性，可以从父类实例处获得信息
+        // 2.可以委托父类对象帮助其完成某件事情
+        // 3.super必须在子类构造方法的第一句（同this）
+        /*--------------------------------------------------------------*/
+        /* 继承进阶：化妆品管理练习 */
+        /*--------------------------------------------------------------*/
+        System.out.println("/* ------------------继承进阶：化妆品管理练习-------------------- */");
+        System.out.println("---排序输出---");
+        // CosmeticManager CM = new CosmeticManager();              // 父类调用printInfo
+        // SortCosmeticManager CM = new SortCosmeticManager();      // sort子类方法调用printInfo
+        ImportCosmeticManager CM = new ImportCosmeticManager();     // Import子类方法调用printInfo
+        CM.add(new Cosmetic("香奈儿","进口",1000));
+        CM.add(new Cosmetic("圣罗兰","进口",800));
+        CM.add(new Cosmetic("大宝","国产",60));
+        CM.add(new Cosmetic("万紫千红","国产",110));
+        CM.printInfo();
+        /*--------------------------------------------------------------*/
+        /* final关键字的学习 */
+        /*--------------------------------------------------------------*/
+        // final可以完成以下操作
+            // 1.修饰一个常量: 修饰属性或局部变量（最终变量）-->全大写，和define、const类似
+            // 2.声明一个方法：
+        System.out.println("/* final关键字的学习 */");
+        // public static final int NUM_MAX = 1000; 最上面定义-->全局
 
 
 
@@ -435,21 +490,144 @@ class ChickenManager{
  *     类体定义:
  * }
  *  protected（受保护的访问权限符，用于修饰属性和方法，使用其修饰的属性和方法可以被继承）
+ *  当父类中没有无参构造方法时，子类必须显示的调用父类的带参构造方法，使用关键字： super；
+ *
  */
-
 // 父类
 class Cat{
     protected String name;
     protected String sex;
+    public Cat(String name,String sex){
+        this.name = name;
+        this.sex = sex;
+    }
     public void eat(){
         System.out.println("吃饭");
     }
 }
 // 子类
 class HomeCat extends Cat{
+    public HomeCat(String name){
+        super(name,"公");
+        System.out.println("我是Home cat的构造方法！");
+    }
     public void print(){
-        System.out.println("我是一只家猫");
+        // 让父类对象帮助完成eat方法的调用
+        super.eat();
+        System.out.println(name+"我是一只家猫"+sex);
+    }
+    // 方法重写环节！
+    public void eat(){
+        System.out.println("我是大橘，我喜欢吃鸡肝");
     }
 }
+
+/**
+ *  继承进阶：化妆品管理练习
+ *  目标：实现一个化妆品商城中的化妆品管理
+ *  1.定义一个化妆品类(Cosmetic) name、type、price
+ *  2.定义一个化妆品管理类(CosmeticManager)
+ *      (1) 实现进货功能
+ *      (2) 可以输出所有化妆品的信息功能
+ *  3.使用继承来实现一个可以按照单价排序输出的所有化妆品的功能
+ *  4.使用继承实现一个只输出进口化妆品的功能
+ */
+// 可输出出进口产品方法
+class ImportCosmeticManager extends CosmeticManager{
+    public void printInfo(){
+
+        // 比较两个字符串的大小是否相等，不能用==，使用 equals 方法
+        for(int i=0;i<count;i++){
+            if("进口".equals(cs[i].getType())){
+                System.out.println(cs[i].getInfo());
+            }
+        }
+    }
+}
+// sort方法
+class SortCosmeticManager extends CosmeticManager{
+    // 只需要重写输出方法即可
+    public void printInfo(){
+        Cosmetic[] temp = Arrays.copyOf(cs,count);
+        // System.out.println(temp.length);
+        // 排序
+        Cosmetic c = null;
+        for(int i=0;i<temp.length-1;i++){
+            for(int j=0;j< temp.length-1-i;j++){
+                if(temp[j].getPrice() > temp[j+1].getPrice()){
+                    c = temp[j];
+                    temp[j] = temp[j+1];
+                    temp[j+1] = c;
+                }
+            }
+        }
+        for(Cosmetic x:temp){
+            System.out.println(x.getInfo());
+        }
+    }
+}
+// 化妆品类
+class Cosmetic{
+    private String name;    //品牌
+    private String type;    //类型（进口/国产）
+    private int price;      // 单价
+    public Cosmetic(String name,String type,int price){
+        this.name = name;
+        this.type = type;
+        this.price = price;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setType(String type){
+        this.type = type;
+    }
+    public String getType(){
+        return type;
+    }
+    public void setPrice(int price){
+        this.price = price;
+    }
+    public int getPrice(){
+        return price;
+    }
+    public String getInfo(){
+        return "name="+name+",type="+type+",price="+price;
+    }
+}
+// 化妆品管理类
+class CosmeticManager{
+    protected int count = 0;
+    protected Cosmetic[] cs = new Cosmetic[4];
+    // 进货功能
+    public void add(Cosmetic c){
+        int size = cs.length;
+        if(count >= size){
+            int newLen = size*2;
+            cs = Arrays.copyOf(cs,newLen);
+        }
+        cs[count++] = c;
+    }
+    // 输出所有商品
+    public void printInfo(){
+        for(int i=0;i<count;i++){
+            System.out.println(cs[i].getInfo());
+        }
+    }
+}
+
+/** 常量类（final关键字学习）
+ *  通常给常量都定义一个常量类，用来存放所有需要用到的常量
+ */
+
+class Constant{
+    public static final int NUM_MAX = 10001;
+    public static final int NUM_MIN = -110;
+    public static final int NUM_COUNT = 20;
+}
+
 
 
