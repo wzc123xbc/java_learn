@@ -187,12 +187,94 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         // final可以完成以下操作
             // 1.修饰一个常量: 修饰属性或局部变量（最终变量）-->全大写，和define、const类似
-            // 2.声明一个方法：
+            // 2.声明一个方法：该方法为最终方法，且只能被子类继承，但是不能被子类重写
+            // 3.声明一个类： 该类转变为最终类，没有子类的类，final修饰的类无法被继承
         System.out.println("/* final关键字的学习 */");
         // public static final int NUM_MAX = 1000; 最上面定义-->全局
+        /*--------------------------------------------------------------*/
+        /* 抽象类的学习*/
+        /*--------------------------------------------------------------*/
+        // 很多具有相同特征和行为的对象可以抽象成一个类
+        // 用abstract关键字声明的类为抽象类
+        // 抽象类不可以被实例化 即初始化
+        // 抽象类的七大规则：
+        //        *  1.抽象类方法可以没有抽象方法，有抽象方法的类必须是抽象类
+        //        *  2.非抽象类继承抽象类必须实现所有抽象方法
+        //        *  3.抽象类可以继承抽象类，可以不实现父类抽象方法
+        //        *  4.抽象类可以有方法实现和属性
+        //        *  5.抽象类不能被实例化
+        //        *  6.抽象类不能声明为final
+        //        *  7.抽象类可以有构造方法
+        System.out.println("/* 抽象类的学习*/");
+        Man man = new Man();
+        man.move();
+        man.eat();
+        Women women = new Women();
+        women.move();
+        women.eat();
+        /*--------------------------------------------------------------*/
+        /* 接口的学习 */
+        /*--------------------------------------------------------------*/
+        // 接口的定义：interface 接口名称{  全局常量; 抽象方法;  }
+        // 接口里边一定写的是动作：吃\睡、跑等等
+        // 接口使用的规则：
+        //      （1）定义一个接口，使用intreface关键字
+        //      （2）在一个接口中，只能定义常量、抽象方法，JDK1.8后可以定义默认的实现方法
+        //      （3）接口可以继承多个接口：extends xxx,xxx
+        //      （4）一个具体类实现接口使用implements关键字
+        //      （5）一个类可以实现多个接口
+        //      （6）抽象类实现接口可以不实现接口的方法
+        //      （7）在接口中定义的方法没有声明，访问修饰符，默认为public
+        //      （8）接口不能有构造方法
+        //      （9）接口不能被实例化
+        // 面向对象的原则：
+        //      （1）对修改关闭，对扩展开放
+        //      （2）面向接口编程
+        System.out.println("/* 接口的学习 */");
+        Girl mm = new Girl("WJZ");
+        mm.sleep();
+        mm.eat();
+        mm.run();
+        /*--------------------------------------------------------------*/
+        /* 多态性学习代码 */
+        /*--------------------------------------------------------------*/
+        // 多态性是指对象在运行过程中的多种形态
+        // 多态性的分类：
+        //    （1）方法的重载与重写---> 多态性的表现
+        //    （2）对象的多态性 -----> 多个子类就是父类中的多种形态
+        // 多态性的功能：
+        //   1.向上转型：将子类实例转为父类
+        //      格式：父类 父类对象 = 子类实例; ->自动转换
+        //      以基础的数据类型操作为例：int i = 'a';(因为char的容量比int小，所以可以自动完成)
+        //   2.向下转型：将父类实例转为子类实例
+        //      格式：子类 子类对象 = （子类）父类实例：强制转换
+        //      以基础的数据类型操作为例：char c = （char）97;(因为整形大于字符，所以要强制完成)
+        // 结论：
+        //    * 面向 抽象/接口 编程
+        //    * 抽象（粒度）面向抽象编程（面向接口编程）
+        //    * 父类通常都定义为抽象类、接口
+        //    * 在实际开发中尽量使用父类引用（更加利于拓展）
+        //    * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+        System.out.println("/* 多态性学习代码 */");
+        HomeDuck hk = new HomeDuck("小鸭鸭");
+        YeDuck yk = new YeDuck("大鸡鸡");
+        // hk.eat();
+        eat(hk);        // 与上语句等价
+        // yk.eat();
+        eat(yk);        // 与上语句等价
+        /*--------------------------------------------------------------*/
 
+    }
 
-
+    /**多态性：
+     * 面向 抽象/接口 编程
+     * 抽象（粒度）面向抽象编程（面向接口编程）
+     * 父类通常都定义为抽象类、接口
+     * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+     */
+    public static void eat(Duck c){
+        System.out.println("鸭吃饭");
+        c.eat();
     }
 }
 
@@ -622,12 +704,151 @@ class CosmeticManager{
 /** 常量类（final关键字学习）
  *  通常给常量都定义一个常量类，用来存放所有需要用到的常量
  */
-
-class Constant{
+// 定义常量类
+ final class Constant{
     public static final int NUM_MAX = 10001;
     public static final int NUM_MIN = -110;
     public static final int NUM_COUNT = 20;
 }
+
+/**抽象类学习
+ * 很多具有相同特征和行为的对象可以抽象成一个类
+ * 用abstract声明的类称为抽象类
+ * 抽象类的七大规则：
+ *  1.抽象类方法可以没有抽象方法，有抽象方法的类必须是抽象类
+ *  2.非抽象类继承抽象类必须实现所有抽象方法
+ *  3.抽象类可以继承抽象类，可以不实现父类抽象方法
+ *  4.抽象类可以有方法实现和属性
+ *  5.抽象类不能被实例化
+ *  6.抽象类不能声明为final
+ *  7.抽象类可以有构造方法
+ *
+ */
+// 定义一个抽象类
+abstract class Animal{
+    public abstract void move();
+}
+abstract class Person extends Animal{
+    private String name;
+    //...
+    public abstract void eat();     // 抽象方法
+}
+// 具体类:继承抽象类的具体类必须实现所有抽象方法
+class Man extends Person{
+    public void move(){
+        System.out.println("我是男人，我爱跑步");
+    }
+    public void eat(){
+        System.out.println("我是男人，我爱吃肉");
+    }
+}
+class Women extends Person{
+    public void move(){
+        System.out.println("我是女人，我爱跑步");
+    }
+    public void eat(){
+        System.out.println("我是女人，我爱吃肉");
+    }
+}
+
+/** 接口学习
+ *  1.接口是一组行为的规范、定义，没有实现
+ *  2.接口可以让程序
+ *  3.接口使用的规则：
+ *       （1）定义一个接口，使用intreface关键字
+ *       （2）在一个接口中，只能定义常量、抽象方法，JDK1.8后可以定义默认的实现方法
+ *       （3）接口可以继承多个接口：extends xxx,xxx
+ *       （4）一个具体类实现接口使用implements关键字
+ *       （5）一个类可以实现多个接口
+ *       （6）抽象类实现接口可以不实现接口的方法
+ *       （7）在接口中定义的方法没有声明，访问修饰符，默认为public
+ *       （8）接口不能有构造方法
+ *       （9）接口不能被实例化
+ * 4.面向对象的原则：
+ *       （1）对修改关闭，对扩展开放
+ *       （2）面向接口编程
+ */
+interface IEat{
+    // public abstract void eat();    //接口中只能定义抽象方法
+    void eat();                      // 接口中定义的方法没有声明修饰符，默认为 public abstract;
+    int NUM = 10;                   //定义常量
+}
+interface Run{
+    void run();
+}
+//  接口可以多继承（注意：类只能单继承）
+interface ISleep extends IEat,Run{
+    void sleep();
+}
+// 具体类实现接口也必须实现接口的所有方法
+class Girl implements ISleep{
+    private String name;
+    public Girl(String name){
+        this.name = name;
+    }
+    public Girl(){}
+    public void sleep(){
+        System.out.println("女生爱碎觉！");
+    }
+    public void eat(){
+        System.out.println("我是"+name+",我爱吃饭！");
+    }
+    public void run(){
+        System.out.println("每天5公里！");
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+
+
+}
+
+/** 多态性学习
+ *面向 抽象/接口 编程
+ *抽象（粒度）面向抽象编程（面向接口编程）
+ *父类通常都定义为抽象类、接口
+ *记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+ */
+// 鸭类
+abstract class Duck{
+    private String name;
+    public Duck(){}
+    public Duck(String name){
+        this.name = name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public abstract void eat();
+}
+// 家鸭类
+class HomeDuck extends Duck{
+    public HomeDuck(String name){
+        super(name);
+    }
+    public void eat(){
+        System.out.println(this.getName()+"，我爱吃蚯蚓");
+    }
+}
+// 野鸭类
+class YeDuck extends Duck{
+    public YeDuck(String name){
+        super(name);
+    }
+    public void eat(){
+        System.out.println(this.getName()+"，我爱吃大米");
+    }
+}
+
+
+
+
 
 
 
