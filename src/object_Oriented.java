@@ -333,6 +333,7 @@ public class object_Oriented {
         // 2.代理角色：实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作
         // 3.真实角色：实现抽象角色，定义真实角色要实现的业务逻辑 共代理角色的调用。
         System.out.println("/* 静态代理模式学习 */");
+
         Action userAction = new UserAction();
         // 代理
         ActionProxy proxy = new ActionProxy(userAction);
