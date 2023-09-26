@@ -43,7 +43,7 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         System.out.println("/* 构造方法学习代码*/");
         Dog dog1 = new Dog();                       // 调用构造方法1
-        Dog dog2 = new Dog("wangwang",5); // 调用构造方法2
+        Dog dog2 = new Dog("wangwang", 5); // 调用构造方法2
         /*--------------------------------------------------------------*/
         /*this关键字学习*/
         /*--------------------------------------------------------------*/
@@ -54,19 +54,19 @@ public class object_Oriented {
         /*对象的一对一关系学习*/
         /*--------------------------------------------------------------*/
         System.out.println("/*对象的一对一关系学习*/");
-            Hero hero = new Hero("刘备",300);
-            Weapon weapon = new Weapon("双股剑",3);
+        Hero hero = new Hero("刘备", 300);
+        Weapon weapon = new Weapon("双股剑", 3);
 
-            // 把两个对象关联起来
-            hero.setWeapon(weapon);
-            weapon.setHero(hero);
+        // 把两个对象关联起来
+        hero.setWeapon(weapon);
+        weapon.setHero(hero);
 
-            // 通过英雄来获取他的信息
-            String hero_name = hero.getName();
-            int hero_age = hero.getAge();
-            Weapon hero_weapon = hero.getWeapon();
-            System.out.print("在下"+hero_name+", 今年"+hero_age+"岁，我的武器是：");
-            System.out.println(hero_weapon.getName()+"，排名："+hero_weapon.getGrade());
+        // 通过英雄来获取他的信息
+        String hero_name = hero.getName();
+        int hero_age = hero.getAge();
+        Weapon hero_weapon = hero.getWeapon();
+        System.out.print("在下" + hero_name + ", 今年" + hero_age + "岁，我的武器是：");
+        System.out.println(hero_weapon.getName() + "，排名：" + hero_weapon.getGrade());
         /*--------------------------------------------------------------*/
         /* static关键字学习 */
         /*--------------------------------------------------------------*/
@@ -95,9 +95,9 @@ public class object_Oriented {
         // 饿汉式单例设计模式：在类被加载后，对象被创建，到程序结束后释放
         // 懒汉式单例设计模式：在第一次调用get方法时，对象被创建，到程序结束后释放
         // 为什么要使用单例设计模式？
-            // 1.在设计一些工具类的时候使用（通常工具类只有功能方法 没有属性）
-            // 2.工具类可能会被频繁调用
-            // 目的是为了节省重复创建对象所带来的内存消耗，从而提高效率
+        // 1.在设计一些工具类的时候使用（通常工具类只有功能方法 没有属性）
+        // 2.工具类可能会被频繁调用
+        // 目的是为了节省重复创建对象所带来的内存消耗，从而提高效率
         // 使用构造方法私有化 + 静态方法 来实现工具类（例如JDK 内 Math）
         // 单例的内存消耗比上述方式小 在项目开发比较好
         System.out.println("/* 单例设计模式学习 */");
@@ -108,12 +108,12 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         System.out.println("/* 对象数组与管理学习 */");
         ChickenManager cm = new ChickenManager(5);
-        cm.add(new Chicken(1,"聪仔",3));
-        cm.add(new Chicken(2,"濠仔",4));
-        cm.add(new Chicken(3,"恒仔",5));
-        cm.add(new Chicken(4,"杰仔",6));
-        cm.add(new Chicken(5,"平仔",7));
-        cm.add(new Chicken(6,"鑫仔",8));
+        cm.add(new Chicken(1, "聪仔", 3));
+        cm.add(new Chicken(2, "濠仔", 4));
+        cm.add(new Chicken(3, "恒仔", 5));
+        cm.add(new Chicken(4, "杰仔", 6));
+        cm.add(new Chicken(5, "平仔", 7));
+        cm.add(new Chicken(6, "鑫仔", 8));
 
         // 查找一个的
         System.out.println("---------findALL---------");
@@ -122,7 +122,7 @@ public class object_Oriented {
         Chicken c = cm.find(5);
         c.print();
         System.out.println("-------update----------");
-        cm.update(new Chicken(1,"聪聪子",20));
+        cm.update(new Chicken(1, "聪聪子", 20));
         cm.printALL();
         /*--------------------------------------------------------------*/
 
@@ -156,11 +156,11 @@ public class object_Oriented {
         //  3.子类方法的访问级别不低于父类相应方法的访问级别
         //  4.父类方法中使用private、static、final任意修饰符修饰，则不能被子类重写
         // 为什么要有重写方法？
-            // 若子类中继承过来的方法，不能满足子类特有的需求时，子类就需要重写父类中相关的方法，方法的重写也是程序扩展性的体现
+        // 若子类中继承过来的方法，不能满足子类特有的需求时，子类就需要重写父类中相关的方法，方法的重写也是程序扩展性的体现
         // 拓展 经典面试题
-            // overloading 与 overriding 的区别
-            // overloading：方法的重载，发生在同一个类中，方法名相同，参数列表不同，返回值无关
-            // overriding：方法的重写，发生在子父类中，方法名相同，参数列表相同，返回值相同
+        // overloading 与 overriding 的区别
+        // overloading：方法的重载，发生在同一个类中，方法名相同，参数列表不同，返回值无关
+        // overriding：方法的重写，发生在子父类中，方法名相同，参数列表相同，返回值相同
         homeCat.eat();   // 重写了父类的方法！！！
         /*--------------------------------------------------------------*/
         /* super关键字学习 */
@@ -177,18 +177,18 @@ public class object_Oriented {
         // CosmeticManager CM = new CosmeticManager();              // 父类调用printInfo
         // SortCosmeticManager CM = new SortCosmeticManager();      // sort子类方法调用printInfo
         ImportCosmeticManager CM = new ImportCosmeticManager();     // Import子类方法调用printInfo
-        CM.add(new Cosmetic("香奈儿","进口",1000));
-        CM.add(new Cosmetic("圣罗兰","进口",800));
-        CM.add(new Cosmetic("大宝","国产",60));
-        CM.add(new Cosmetic("万紫千红","国产",110));
+        CM.add(new Cosmetic("香奈儿", "进口", 1000));
+        CM.add(new Cosmetic("圣罗兰", "进口", 800));
+        CM.add(new Cosmetic("大宝", "国产", 60));
+        CM.add(new Cosmetic("万紫千红", "国产", 110));
         CM.printInfo();
         /*--------------------------------------------------------------*/
         /* final关键字的学习 */
         /*--------------------------------------------------------------*/
         // final可以完成以下操作
-            // 1.修饰一个常量: 修饰属性或局部变量（最终变量）-->全大写，和define、const类似
-            // 2.声明一个方法：该方法为最终方法，且只能被子类继承，但是不能被子类重写
-            // 3.声明一个类： 该类转变为最终类，没有子类的类，final修饰的类无法被继承
+        // 1.修饰一个常量: 修饰属性或局部变量（最终变量）-->全大写，和define、const类似
+        // 2.声明一个方法：该方法为最终方法，且只能被子类继承，但是不能被子类重写
+        // 3.声明一个类： 该类转变为最终类，没有子类的类，final修饰的类无法被继承
         System.out.println("/* final关键字的学习 */");
         // public static final int NUM_MAX = 1000; 最上面定义-->全局
         /*--------------------------------------------------------------*/
@@ -263,7 +263,80 @@ public class object_Oriented {
         // yk.eat();
         eat(yk);        // 与上语句等价
         /*--------------------------------------------------------------*/
+        /* instanceof关键字学习 */
+        /*--------------------------------------------------------------*/
+        // 用于检查对象是否为指定类型，通常在把父类引用强制转换为子类引用时要使用，以避免发生类型转换异常
+        //  例如：
+        //      if(c instanceof HomeDuck){           // 判断一个对象是否是某个类型 如果是返回true 否则放回false
+        //              HomeDuck dk = （HomeDuck）c;    // 大的类型转换成小的类型，强制转换
+        //              dk.方法（）;
+        //        }
+        // 父类的设计法则
+        // 1.父类通常情况下都设计为抽象类或接口，其中优先考虑接口，如接口不能满足才考虑抽象类
+        // 2.一个具体的类尽可能不去继承另一个具体类，这样的好处是无需检查对象是否为父类的对象
+        /*--------------------------------------------------------------*/
+        /* 抽象类应用————模板方法模式（把公共部分抽象出来！）学习 */
+        /*--------------------------------------------------------------*/
+        // 概念：定义一个操作中的算法的骨架，而将一些可变部分的实现延迟到子类当中。
+        //      模板方法模式使得子类可以不改变一个算法的结构即可重新定义该算法的某些特定的步骤
+        System.out.println("/* 抽象类应用————模板方法模式（把公共部分抽象出来！）学习 */");
+        UserManager um = new UserManager();
+        um.action("admin","add");   // 验证通过的添加操作
+        UserManager um_1 = new UserManager();
+        um_1.action("wzc","add");   // 验证不通过的添加操作
+        /*--------------------------------------------------------------*/
+        /* 接口应用————策略模式学习 */
+        /*--------------------------------------------------------------*/
+        // 概念：定义了一系列的算法，将每一种算法封装起来并可以相聚轮换使用
+        //      策略模式让算法独立于使用它的客户应用二独立变化
+        // 理解；把可变的行为抽象出来，成为接口，定义一系列的算法。然后将组合而成的接口定义成 调用类的一个属性
+        BaseService user = new UserService();
+        user.setiSsave(new FileSave());
+        user.add("待上传的数据");
+        /*--------------------------------------------------------------*/
+        /* Object类学习 */
+        /*--------------------------------------------------------------*/
+        // 每个类都使用Object作为超类。所有对象（包括数组）都实现这个类的方法--->所有类都是Object类的子类
+        // *  一、public String toString（）方法
+        // *      返回该对像的字符串表示
+        // *      通常，toString方法会返回一个“以文本方式表示”此对象的字符串，结果应是一个简明且易于读懂的信息表达式，建议所有子类都重写该方法
+        // *  二、public boolean equals()方法
+        // *      指示其他某个对象于此对象是否“相等”
+        // *      equals 比较的是地址 所以new两个无论内容是否相同，都返回false，除非人为重写equals方法
+        System.out.println("/* Object类学习 */");
+        Student stu = new Student(10,19,"wzc");
+        System.out.println(s.toString());
+        System.out.println(s);          // 等价上一句话
+        Student stu2 = new Student(11,20,"wjz");
 
+        // equals 比较的是地址 所以new两个无论内容是否相同，都返回false，除非人为重写equals方法
+        boolean b = stu.equals(stu2);
+        System.out.println(b);
+        /*--------------------------------------------------------------*/
+        /* 简单工厂模式学习----> 降低使用者与被使用者之间的依赖性 */
+        /*--------------------------------------------------------------*/
+        // 简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例，简单工厂模式是工厂模式家族中最简单实用的模式
+        System.out.println("/* 简单工厂模式学习 */");
+        // Product phone = new phone();   使用者与被使用者两者间耦合性高，产生依赖。当被使用者改变时，会影响使用者
+
+        Product phone = ProductFactory.getProduct("phone"); // 使用工厂模式降低依赖性
+        if(null!=phone) {
+            phone.work();
+        }
+        /*--------------------------------------------------------------*/
+        /* 静态代理模式学习 */
+        /*--------------------------------------------------------------*/
+        // 代理模式为其他对象提供了一种代理以控制对这个对象的访问
+        // 说白了就是“真实对象”的代表，在访问对象时引入一定程度的间接性，因为这种间接性可以附加多种途径
+        // 静态代理的三个概念：
+        // 1.抽象角色：通过接口或抽象类声明真实角色实现的业务方法（就是例子中的Action接口）
+        // 2.代理角色：实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作
+        // 3.真实角色：实现抽象角色，定义真实角色要实现的业务逻辑 共代理角色的调用。
+        System.out.println("/* 静态代理模式学习 */");
+        Action userAction = new UserAction();
+        // 代理
+        ActionProxy proxy = new ActionProxy(userAction);
+        proxy.doAction();
     }
 
     /**多态性：
@@ -846,9 +919,179 @@ class YeDuck extends Duck{
     }
 }
 
+/** 抽象类应用————模板方法模式（把公共部分抽象出来！）学习
+ *  例子解释：
+ *  execute参与了父类的使用，但是并没有在父类中定义 而是下放到了子类
+ */
+// 抽象类定义框架
+abstract class BaseManager{
+    public void action(String name,String method){
+        if("admin".equals(name)){
+            execute(method);
+        }else{
+            System.out.println("你没有操作权限，请联系管理员");
+        }
+    }
+    public abstract void execute(String method);
+}
+// 具体类实现下放功能
+class UserManager extends BaseManager{
+    public void execute(String method){
+        // 用户是否登录的验证
+        // 验证成功后才可以执行以下操作
+        if("add".equals(method)){
+            System.out.println("执行了添加操作");
+        }else if("del".equals(method)){
+            System.out.println("执行了删除操作");
+        }
+    }
+}
 
+/** 接口应用————策略模式（面向接口编程）
+ *定义了一系列的算法，将每一种算法封装起来并可以相聚轮换使用,策略模式让算法独立于使用它的客户应用二独立变化
+ *把可变的行为抽象出来，成为接口，定义一系列的算法。然后将组合而成的接口定义成 调用类的一个属性
+ */
+// 接口:把可变的行为抽象出来，成为接口，定义一系列的算法。
+interface ISave{
+    public void save(String data);
+}
+// 策略1
+class FileSave implements ISave{
+    public void save(String data){
+        System.out.println("正在把数据保存到文件中。。。"+data);
+    }
+}
+// 策略2
+class NetSave implements ISave{
+    public void save(String data){
+        System.out.println("正在把数据保存到网络中。。。"+data);
+    }
+}
+// 写主类 用于调用封装成属性和方法的接口（内涵系列算法）
+abstract class BaseService{
+    private ISave iSsave;
+    public void setiSsave(ISave iSsave){
+        this.iSsave = iSsave;
+    }
+    public void add(String data){
+        System.out.println("检查数据合法性。。。");
+        iSsave.save(data);  // 接口调用
+        System.out.println("数据保存完毕");
+    }
+}
+// 拓展业务： 可能会有用户保存等等的需求 直接继承就好了
+class UserService extends BaseService{
+}
 
+/** Object类
+ *  一、public String toString（）方法
+ *      返回该对像的字符串表示
+ *      通常，toString方法会返回一个“以文本方式表示”此对象的字符串，结果应是一个简明且易于读懂的信息表达式，建议所有子类都重写该方法
+ *  二、public boolean equals()方法
+ *      指示其他某个对象于此对象是否“相等”
+ *      equals 比较的是地址 所以new两个无论内容是否相同，都返回false，除非人为重写equals方法
+ */
+// 测试类:默认继承超类
+class Student{
+    private String name;
+    private int age;
+    private  int sid;
+    public Student(){}
+    public Student(int sid,int age,String name){
+        this.sid = sid;
+        this.age = age;
+        this.name = name;
+    }
+    // 重写Object类的toString方法
+    public String toString(){
+        return "sid="+sid+",name="+name+",age="+age;
+    }
+    // 重写Object类的equals方法
+    public boolean equals(Object obj){
+        if(this==obj){      // 地址相同一定对
+            return true;
+        }
+        if(obj instanceof Student){ // 类型相同接着判断
+            Student s = (Student) obj;
+            if(!this.name.equals(s.name)){
+                return false;
+            }
+            if(this.sid!=s.sid){
+                return false;
+            }
+            if(this.age != s.age)
+                return false;
+            return true;
+        }
+        return false;
+    }
+}
 
+/** 简单工厂模式学习
+ *  降低使用者与被使用者之间的依赖性
+ */
+interface Product{
+    public void work();
+}
+// 手机类
+class phone implements Product{
+    public void work(){
+        System.out.println("手机开始工作...");
+    }
+}
+// 电脑类
+class Computer implements Product{
+    public void work(){
+        System.out.println("电脑开始工作...");
+    }
+}
+// 工厂类
+class ProductFactory{
+    public static Product getProduct(String name){
+        if("phone".equals(name)) {
+            return new phone();
+        }else if("computer".equals(name)){
+            return new Computer();
+        }else{
+            return null;
+        }
+    }
+}
 
+/** 静态代理模式学习
+ *  代理模式为其他对象提供了一种代理以控制对这个对象的访问
+ *  说白了就是“真实对象”的代表，在访问对象时引入一定程度的间接性，因为这种间接性可以附加多种途径
+ *  结构：
+ *              Action(业务接口)
+ *            /              \
+ *     userAction(代理)--->  proxy(业务实现的具体类)
+ *  举个例子来理解：你要住房子 你和中介 你是被代理 中介是代理 你不用操心搬家问题 只用给钱入住
+ *  缺点：
+ *      缺点是代理对象必须提前写出，如果接口层发生了变化，代理对象的代码也要进行维护。如果能在运行时动态的写出代理对象，不但能减少一大批代理类代码
+ *      也少了不断维护的烦恼，不过在运行时的效率必然会受到部分的影响。
+ */
+// 抽象角色：   （业务接口--执行一个动作）
+interface Action{
+    public void doAction();
+}
+// 代理对象：
+class ActionProxy implements Action{
+    private Action target;  // 被代理的对象
+    public ActionProxy(Action target){
+        this.target = target;
+    }
+    // 执行操作
+    public void doAction(){
+        long startTime = System.currentTimeMillis();
+        target.doAction();  // 执行真正的业务
+        long endTime = System.currentTimeMillis();
+        System.out.println("共耗时："+(endTime-startTime));
+    }
 
-
+}
+// 真实角色：（业务具体的实现类）
+class UserAction implements Action{
+    public void doAction(){
+        System.out.println("用户开始工作...");
+    }
+}
