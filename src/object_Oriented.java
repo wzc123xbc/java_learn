@@ -333,13 +333,91 @@ public class object_Oriented {
         // 2.代理角色：实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作
         // 3.真实角色：实现抽象角色，定义真实角色要实现的业务逻辑 共代理角色的调用。
         System.out.println("/* 静态代理模式学习 */");
-
         Action userAction = new UserAction();
         // 代理
         ActionProxy proxy = new ActionProxy(userAction);
         proxy.doAction();
-    }
+        /*--------------------------------------------------------------*/
+        /* 适配器模式学习 */
+        /*--------------------------------------------------------------*/
+        // 将一个类的接口钻换成客户希望的另外一个接口，适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作
+        // 符合设计原则： 对修改关闭，对扩展开放
+        // 形象理解： 各国插座不同 我们用到”转接头“，这里的转接头起到的作用就是适配器
+        System.out.println("/* 适配器模式学习 */");
+        PowerA powerA = new PowerAImpl();
+        work(powerA);
+        PowerB powerB = new PowerBImpl();
+        // work(power B)
+        Adapter adapter = new Adapter(powerB);  // 把B放到适配器里去
+        work(adapter);                          // 把适配器放到work里去
+        /*--------------------------------------------------------------*/
+        /* 内部类学习 */
+        /*--------------------------------------------------------------*/
+        // 内部类就是在类的内部定义一个类
+        // 类不能直接对外使用，加一个私有关键字，然后对外提供一个访问方法
+        System.out.println("/* 内部类学习 */");
+        Outer outer = new Outer();
+        // 在外部创建成员内部类的实例(通常情况下，不建议这样使用)
+        //Outer.Inner inner = outer.new Inner();
+        //inner.print();
+        outer.innerPrint();
+        outer.show();
 
+        Outer.Inner3 inner3 = new Outer.Inner3();
+        inner3.print();
+
+        outer.print1();
+        outer.print2();
+        /*--------------------------------------------------------------*/
+        /* 数据结构之链表学习 */
+        /*--------------------------------------------------------------*/
+        System.out.println("/* 数据结构之链表学习 */");
+        NodeManager nm = new NodeManager();
+        System.out.println("------------add------------");
+        for(int i=0;i<5;i++)nm.add(i+1);
+        nm.print();
+        System.out.println("------------del------------");
+        nm.del(3);
+        nm.print();
+        System.out.println("------------find------------");
+        System.out.println(nm.find(1));
+        System.out.println("------------update------------");
+        nm.update(5,10);
+        nm.print();
+        System.out.println("------------insert------------");
+        nm.insert(3,20);
+        nm.print();
+        /*--------------------------------------------------------------*/
+        /* 基本数据类型包装类学习 */
+        /*--------------------------------------------------------------*/
+        // Number类： Byte、Double、Float、Integer、Long、Short
+        // Object类：
+        /*--------------------------------------------------------------*/
+        /* 包与访问修饰符 */
+        /*--------------------------------------------------------------*/
+        // 定义一个包：
+            // package com.wzc.object.vo;
+        /*--------------------------------------------------------------*/
+        /* OO原则总结 */
+        /*--------------------------------------------------------------*/
+        // 1.开闭原则
+        //      一个软件实体中类、模块、函数对扩展开放、对修改关闭
+        // 2.合成/聚合复用原则
+        //      尽量用已有对象提供的功能，使之成为新对象的一部分
+        // 3.依赖倒置原则
+        //      高层不依赖底层模块，二者都依赖于其抽象，抽象不依赖细节，细节依赖抽象
+        // 4.接口隔离原则
+        //      客户端不应该依赖他不需要的接口，一个类对于另一个类的依赖应该建立在最小的接口上
+        // 5.迪米特原则
+        //      一个对象应该对其它对象保持最少的了解
+        // 6.里氏替换原则
+        //      所有引用基类的地方必须透明的使用其子类的对象
+        // 7.单一职责原则
+        //      一个类负责一个职责
+        /*--------------------------------------------------------------*/
+
+
+    }
     /**多态性：
      * 面向 抽象/接口 编程
      * 抽象（粒度）面向抽象编程（面向接口编程）
@@ -349,6 +427,14 @@ public class object_Oriented {
     public static void eat(Duck c){
         System.out.println("鸭吃饭");
         c.eat();
+    }
+
+    /**
+     * 适配器模式定义的静态方法*/
+    public static void work(PowerA a){
+        System.out.println("正在连接...");
+        a.insert();
+        System.out.println("工作结束...");
     }
 }
 
@@ -413,7 +499,7 @@ class seal_inside{
  *  构造方法可以有很多个
  *  构造方法用于初始化数据（属性）
  *  每个类都有一个默认的构造方法
- *  在构造方法中调用其他构造方法 必须使用thos关键字 同时必须再第一句使用
+ *  在构造方法中调用其他构造方法 必须使用this关键字 同时必须再第一句使用
  *  private Dog（） 没有属性的类就私有化构造方法
  */
 class Dog{
@@ -1090,9 +1176,265 @@ class ActionProxy implements Action{
     }
 
 }
-// 真实角色：（业务具体的实现类）
+// 真实角色：（业务具体地实现类）
 class UserAction implements Action{
     public void doAction(){
         System.out.println("用户开始工作...");
+    }
+}
+
+/** 适配器模式学习
+ *  问题来了 如何 work powerB-----> A接口与B接口不兼容 需要一个适配器
+ */
+// 转接头：适配器 把B转换成A
+class Adapter implements PowerA{
+    private PowerB powerB;
+    public Adapter(PowerB powerB){
+        this.powerB = powerB;
+    }
+    public void insert(){
+        powerB.connet();
+    }
+}
+//A接口 -->实现work（）方法
+interface PowerA{
+    public void insert();
+}
+//B接口 -->实现connet() 方法
+interface PowerB{
+    public void connet();
+}
+// 具体实现方法A
+class PowerAImpl implements PowerA{
+    public void insert(){
+        System.out.println("电源A开始工作...");
+    }
+}
+// 具体实现方法B
+class PowerBImpl implements PowerB{
+    public void connet(){
+        System.out.println("电源B开始工作...");
+    }
+}
+
+/** 内部类学习
+ *  1.成员内部类：直接在内部定义的类
+ *  2.方法内部类：在一个类中的方法定义一个类
+ *      （1）方法内部类必须在方法内进行实例化---> 在方法内部初始化
+ *      （2）方法内部类从内部应用的变量必须是最终变量
+ *  3.静态内部类：在一个类的内部定义一个静态内部类
+ *      静态内部类的含义是该内部类可以像其他静态成员一样，没有外部类对象是，也能够访问它。
+ *      静态嵌套类仅能访问外部类的静态成员和方法
+ *  4.匿名内部类
+ *      匿名内部类的三种情况
+ *      （1）继承式
+ *      （2）接口式
+ *      （3）参数式
+ *      注意事项：
+ *          （1）不能有构造方法，只能有一个实例
+ *          （2）不能定义任何静态成员、静态方法
+ *          （3）不能是public、protected、private、static
+ *          （4）一定在new后面，用其隐含实现一个接口或一个类
+ *          （5）匿名内部类为局部的，所以局部内部类的所有限制都对其生效
+ */
+class Outer{
+    private String name;
+    //-------------------成员内部类-------------------------
+    // 对外访问内部类的方法
+    public void innerPrint(){
+        Inner inner = new Inner();
+        inner.print();
+    }
+    // 成员内部类
+    private class Inner{
+        public void print(){
+            System.out.println("成员内部类");
+        }
+    }
+    //------------------方法内部类--------------------------
+    // show方法的局部变量或方法的参数，实际必须是常量（final）
+    public void show(){
+        class Inner2{
+            public void print(){
+                System.out.println("方法内部类");
+            }
+        }
+        // 使用方法,调用print方法
+        Inner2 inner2 = new Inner2();
+        inner2.print();
+    }
+    //------------------静态内部类--------------------------
+    // 无法从静态上下文中引用非静态变量
+    static class Inner3{
+        public void print(){
+            System.out.println("静态内部类实现");
+        }
+    }
+    //------------------匿名内部类--------------------------
+    public void print1(){
+        // 继承式
+        Cow cow = new Cow() {
+            @Override
+            public void eat() {
+               System.out.println("eat：继承式匿名内部类");
+            }
+        };  // 写成一个语句
+    }
+    // 接口式
+    public void print2(){
+        Eat eat = new Eat() {
+            @Override
+            public void eat() {
+                System.out.println("eat:接口类匿名内部类");
+            }
+        };
+        eat.eat();
+    }
+    // 参数式
+}
+// 继承式内部类
+abstract class Cow{
+    public abstract void eat();
+}
+// 接口式内部类
+interface Eat{
+    public void eat();
+}
+
+/** 数据结构之链表
+ */
+class NodeManager{
+    private Node root;  // 根节点
+    private int currentIndex; // 节点的序号
+
+    // 公共方法集
+        //添加类
+    public void add(int data){
+        if(root==null){
+            root = new Node(data);
+        }else{
+            root.addNode(data); //调用内部递归添加类
+        }
+    }
+    // 删除节点
+    public void del(int data){
+        if(root.getData()==data){
+            root = root.next;
+        }else{
+            root.deldata(data); // 调用内部递归删除类
+        }
+    }
+        // 打印所有
+    public void print(){
+        if(root!=null){
+            System.out.print(root.getData()+"->");
+            root.printAllNode();    // 调用内部递归输出类
+            System.out.println();
+        }
+    }
+    // 查找是否存在节点
+    public boolean find(int data){
+        if(root==null)return false;
+        if(root.getData()==data){
+            return true;
+        }else{
+            return root.findNode(data); // 调用递归查找类
+        }
+    }
+    // 更新节点值
+    public boolean update(int oldData,int newData){
+        if(root==null)return false;
+        if(root.getData()==oldData){
+            root.setData(newData);
+            return true;
+        }else{
+            return root.updateNode(oldData,newData);   //调用递归更新类
+        }
+    }
+    // 插入节点
+    public void insert(int index,int data){
+        if(index<0)return;
+        currentIndex = 0;
+        if(index==currentIndex){
+            Node newNode = new Node(data);
+            root.next = newNode;
+        }else{
+            root.insertNode(index,data);
+        }
+    }
+
+
+    // 内部类：外部不可访问
+    private class Node{
+        private int data;
+        private Node next;
+        public Node(int data){
+            this.data = data;
+        }
+        public void setData(int data){
+            this.data = data;
+        }
+        public int getData() {
+            return data;
+        }
+        // 添加节点
+        public void addNode(int data){
+            if(this.next==null){
+                this.next = new Node(data);
+            }else{
+                this.next.addNode(data);
+            }
+        }
+        // 删除节点
+        public void deldata(int data){
+            if(this.next!=null){
+                if(this.next.data==data){
+                    this.next = this.next.next;
+                }else{
+                    this.next.deldata(data);
+                }
+            }
+        }
+        // 输出所有节点
+        public void printAllNode() {
+            if(this.next!=null){
+                System.out.print(this.next.getData()+"->");
+                this.next.printAllNode();
+            }
+        }
+        // 查找节点
+        public boolean findNode(int data){
+            if(this.next!=null){
+                if(this.next.data==data){
+                    return true;
+                }else{
+                    return this.next.findNode(data);
+                }
+            }
+            return false;
+        }
+        // 修改节点
+        public boolean updateNode(int oldData,int newData){
+            if(this.next!=null){
+                if(this.next.data  == oldData){
+                    this.next.data = newData;
+                    return true;
+                }else{
+                    return this.next.updateNode(oldData, newData);
+                }
+            }
+            return false;
+        }
+        // 插入节点
+        public void insertNode(int index,int data){
+            currentIndex++;
+            if(index==currentIndex){
+                Node newNode = new Node(data);
+                newNode.next = this.next;
+                this.next = newNode;
+            }else{
+                this.next.insertNode(index,data);
+            }
+        }
     }
 }
