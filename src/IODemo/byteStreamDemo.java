@@ -1,3 +1,5 @@
+package IODemo;
+
 import java.io.*;
 public class byteStreamDemo {
     /**
@@ -87,8 +89,6 @@ public class byteStreamDemo {
             e.printStackTrace();
         }
     }
-
-
 
     public static void main(String[] args) {
         /* 字节流学习 */

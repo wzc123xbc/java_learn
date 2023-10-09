@@ -1,5 +1,6 @@
+package Object_Oriented;
+
 import java.util.Arrays;
-import java.util.function.IntFunction;
 
 public class object_Oriented {
     /** 面向对象学习大纲
@@ -174,8 +175,8 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         System.out.println("/* ------------------继承进阶：化妆品管理练习-------------------- */");
         System.out.println("---排序输出---");
-        // CosmeticManager CM = new CosmeticManager();              // 父类调用printInfo
-        // SortCosmeticManager CM = new SortCosmeticManager();      // sort子类方法调用printInfo
+        // Object_Oriented.CosmeticManager CM = new Object_Oriented.CosmeticManager();              // 父类调用printInfo
+        // Object_Oriented.SortCosmeticManager CM = new Object_Oriented.SortCosmeticManager();      // sort子类方法调用printInfo
         ImportCosmeticManager CM = new ImportCosmeticManager();     // Import子类方法调用printInfo
         CM.add(new Cosmetic("香奈儿", "进口", 1000));
         CM.add(new Cosmetic("圣罗兰", "进口", 800));
@@ -254,7 +255,7 @@ public class object_Oriented {
         //    * 抽象（粒度）面向抽象编程（面向接口编程）
         //    * 父类通常都定义为抽象类、接口
         //    * 在实际开发中尽量使用父类引用（更加利于拓展）
-        //    * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+        //    * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 Object_Oriented.HomeDuck
         System.out.println("/* 多态性学习代码 */");
         HomeDuck hk = new HomeDuck("小鸭鸭");
         YeDuck yk = new YeDuck("大鸡鸡");
@@ -267,8 +268,8 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         // 用于检查对象是否为指定类型，通常在把父类引用强制转换为子类引用时要使用，以避免发生类型转换异常
         //  例如：
-        //      if(c instanceof HomeDuck){           // 判断一个对象是否是某个类型 如果是返回true 否则放回false
-        //              HomeDuck dk = （HomeDuck）c;    // 大的类型转换成小的类型，强制转换
+        //      if(c instanceof Object_Oriented.HomeDuck){           // 判断一个对象是否是某个类型 如果是返回true 否则放回false
+        //              Object_Oriented.HomeDuck dk = （Object_Oriented.HomeDuck）c;    // 大的类型转换成小的类型，强制转换
         //              dk.方法（）;
         //        }
         // 父类的设计法则
@@ -317,9 +318,9 @@ public class object_Oriented {
         /*--------------------------------------------------------------*/
         // 简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例，简单工厂模式是工厂模式家族中最简单实用的模式
         System.out.println("/* 简单工厂模式学习 */");
-        // Product phone = new phone();   使用者与被使用者两者间耦合性高，产生依赖。当被使用者改变时，会影响使用者
+        // Object_Oriented.Product Object_Oriented.phone = new Object_Oriented.phone();   使用者与被使用者两者间耦合性高，产生依赖。当被使用者改变时，会影响使用者
 
-        Product phone = ProductFactory.getProduct("phone"); // 使用工厂模式降低依赖性
+        Product phone = ProductFactory.getProduct("Object_Oriented.phone"); // 使用工厂模式降低依赖性
         if(null!=phone) {
             phone.work();
         }
@@ -358,7 +359,7 @@ public class object_Oriented {
         System.out.println("/* 内部类学习 */");
         Outer outer = new Outer();
         // 在外部创建成员内部类的实例(通常情况下，不建议这样使用)
-        //Outer.Inner inner = outer.new Inner();
+        //Object_Oriented.Outer.Inner inner = outer.new Inner();
         //inner.print();
         outer.innerPrint();
         outer.show();
@@ -422,7 +423,7 @@ public class object_Oriented {
      * 面向 抽象/接口 编程
      * 抽象（粒度）面向抽象编程（面向接口编程）
      * 父类通常都定义为抽象类、接口
-     * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+     * 记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 Object_Oriented.HomeDuck
      */
     public static void eat(Duck c){
         System.out.println("鸭吃饭");
@@ -500,7 +501,7 @@ class seal_inside{
  *  构造方法用于初始化数据（属性）
  *  每个类都有一个默认的构造方法
  *  在构造方法中调用其他构造方法 必须使用this关键字 同时必须再第一句使用
- *  private Dog（） 没有属性的类就私有化构造方法
+ *  private Object_Oriented.Dog（） 没有属性的类就私有化构造方法
  */
 class Dog{
     private String name;
@@ -767,8 +768,8 @@ class HomeCat extends Cat{
 /**
  *  继承进阶：化妆品管理练习
  *  目标：实现一个化妆品商城中的化妆品管理
- *  1.定义一个化妆品类(Cosmetic) name、type、price
- *  2.定义一个化妆品管理类(CosmeticManager)
+ *  1.定义一个化妆品类(Object_Oriented.Cosmetic) name、type、price
+ *  2.定义一个化妆品管理类(Object_Oriented.CosmeticManager)
  *      (1) 实现进货功能
  *      (2) 可以输出所有化妆品的信息功能
  *  3.使用继承来实现一个可以按照单价排序输出的所有化妆品的功能
@@ -970,7 +971,7 @@ class Girl implements ISleep{
  *面向 抽象/接口 编程
  *抽象（粒度）面向抽象编程（面向接口编程）
  *父类通常都定义为抽象类、接口
- *记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 HomeDuck
+ *记住 该方法的参数是一个抽象类或者接口，不能具体化 --> DUCK 而非 Object_Oriented.HomeDuck
  */
 // 鸭类
 abstract class Duck{
@@ -1135,7 +1136,7 @@ class Computer implements Product{
 // 工厂类
 class ProductFactory{
     public static Product getProduct(String name){
-        if("phone".equals(name)) {
+        if("Object_Oriented.phone".equals(name)) {
             return new phone();
         }else if("computer".equals(name)){
             return new Computer();
@@ -1149,7 +1150,7 @@ class ProductFactory{
  *  代理模式为其他对象提供了一种代理以控制对这个对象的访问
  *  说白了就是“真实对象”的代表，在访问对象时引入一定程度的间接性，因为这种间接性可以附加多种途径
  *  结构：
- *              Action(业务接口)
+ *              Object_Oriented.Action(业务接口)
  *            /              \
  *     userAction(代理)--->  proxy(业务实现的具体类)
  *  举个例子来理解：你要住房子 你和中介 你是被代理 中介是代理 你不用操心搬家问题 只用给钱入住
