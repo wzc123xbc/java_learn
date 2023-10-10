@@ -1,7 +1,7 @@
 package IODemo;
 
 import java.io.*;
-public class byteStreamDemo {
+public class ByteStreamDemo {
     /**
      * 字节流学习
      * 字节输入输出流
