@@ -99,6 +99,5 @@ public class BufferStreamDemo {
         /*----------*/
         charWriter();
         charReader();
-
     }
 }
